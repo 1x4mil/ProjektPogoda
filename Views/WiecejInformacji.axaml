@@ -1,0 +1,99 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ProjektPogoda.ViewModels"
+             x:Class="ProjektPogoda.Views.WiecejInformacjiView"
+             x:DataType="vm:WiecejInformacjiViewModel"
+             Background="#F0F4F8"
+             Padding="20">
+
+	<ScrollViewer>
+		<Border Background="White" CornerRadius="10" Padding="20" BoxShadow="0 4 10 #999">
+			<StackPanel Spacing="15">
+				
+				<TextBlock Text="SZCZEGÓŁOWA POGODA" FontSize="26" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center"/>
+				<TextBlock Text="{Binding Pogoda.Miasto}" FontSize="20" FontWeight="Bold" Foreground="#34495E" HorizontalAlignment="Center"/>
+				<TextBlock Text="{Binding Pogoda.Kraj}" FontSize="14" Foreground="#7F8C8D" HorizontalAlignment="Center"/>
+
+				<Separator/>
+
+				<StackPanel>
+					<TextBlock Text="Temperatura" FontSize="18" FontWeight="Bold"/>
+
+					<TextBlock>
+						<Run Text="Aktualna: "/>
+						<Run Text="{Binding Pogoda.Temperatura}"/>
+						<Run Text=" °C"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Odczuwalna: "/>
+						<Run Text="{Binding Pogoda.Odczuwalna}"/>
+						<Run Text=" °C"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Minimalna: "/>
+						<Run Text="{Binding Pogoda.Min}"/>
+						<Run Text=" °C"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Maksymalna: "/>
+						<Run Text="{Binding Pogoda.Max}"/>
+						<Run Text=" °C"/>
+					</TextBlock>
+				</StackPanel>
+
+				<Separator/>
+				
+				<StackPanel>
+					<TextBlock Text="Atmosfera" FontSize="18" FontWeight="Bold"/>
+
+					<TextBlock>
+						<Run Text="Opis: "/>
+						<Run Text="{Binding Pogoda.Opis}"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Ciśnienie: "/>
+						<Run Text="{Binding Pogoda.Cisnienie}"/>
+						<Run Text=" hPa"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Wilgotność: "/>
+						<Run Text="{Binding Pogoda.Wilgotnosc}"/>
+						<Run Text=" %"/>
+					</TextBlock>
+
+					<TextBlock>
+						<Run Text="Zachmurzenie: "/>
+						<Run Text="{Binding Pogoda.Zachmurzenie}"/>
+						<Run Text=" %"/>
+					</TextBlock>
+				</StackPanel>
+
+				<Separator/>
+
+				<StackPanel>
+					<TextBlock Text="Wiatr" FontSize="18" FontWeight="Bold"/>
+
+					<TextBlock>
+						<Run Text="Prędkość: "/>
+						<Run Text="{Binding Pogoda.PredkoscWiatru}"/>
+						<Run Text=" m/s"/>
+					</TextBlock>
+				</StackPanel>
+
+				<Separator/>
+
+				<StackPanel>
+					<TextBlock Text="Czas pomiaru" FontSize="18" FontWeight="Bold"/>
+					<TextBlock FontStyle="Italic">
+						<Run Text="{Binding Pogoda.CzasPomiaru}"/>
+					</TextBlock>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+	</ScrollViewer>
+</UserControl>

@@ -1,0 +1,126 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ProjektPogoda.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="ProjektPogoda.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+		WindowStartupLocation="CenterScreen"
+        Title="Pogoda" Width="800" Height="500"
+		Icon="/Assets/glowna.ico">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel />
+	</Design.DataContext>
+
+	<Grid Background="#D0E8FF">
+		<Image Source="avares://ProjektPogoda/Assets/chmurki.png"
+               Width="350" Height="250"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="30,30"
+               Opacity="0.54" />
+
+		<Image Source="avares://ProjektPogoda/Assets/chmurki.png"
+               Width="230" Height="130"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Margin="15,30,44,23"
+               Opacity="0.55" />
+
+		<Image Source="avares://ProjektPogoda/Assets/chmurki.png"
+               Width="280" Height="110"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"
+               Margin="53,0,0,44"
+               Opacity="0.55" />
+
+		<Image Source="avares://ProjektPogoda/Assets/chmurki.png"
+               Width="280" Height="140"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Margin="0,0,62,61"
+               Opacity="0.59" />
+		
+		<Image Source="avares://ProjektPogoda/Assets/chmurki.png"
+               Width="500" Height="300"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Opacity="0.4" />
+
+		<StackPanel 
+			   HorizontalAlignment="Center"
+		   	   VerticalAlignment="Center"
+			   Width="350"
+			   Spacing="10">
+
+			<TextBlock Text="Wpisz miasto:" Margin="0,0,0,5"/>
+			<TextBox Text="{Binding Miasto, Mode=TwoWay}"
+					 Watermark="Możesz wpisać też nazwę kraju :)"/>
+
+			<Button Content="Pokaż pogodę"
+					Command="{Binding PokazPogodeAsync}"
+					Margin="0,10,0,0"/>
+			
+			<TextBlock Text="{Binding Pogoda.Miasto}"
+					   FontSize="18"
+					   FontWeight="Bold"
+					   HorizontalAlignment="Center"
+					   IsVisible="{Binding Pogoda}"
+					   Margin="0,5,0,0"/>
+
+
+			<TextBlock Text="{Binding KomunikatBledu}"
+					   Foreground="Red"
+					   FontWeight="Bold"
+					   TextWrapping="Wrap"
+					   HorizontalAlignment="Center"
+					   Margin="0,0,0,10"/>
+
+			<UniformGrid Rows="1"
+						 Columns="2"
+                         IsVisible="{Binding Pogoda}"
+                         Margin="0,20,0,0"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Top"
+                         Width="660"
+				         Height="150">
+
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Padding="10"
+						Margin="5,0">
+					
+					<TextBlock Text="{Binding Pogoda.Temperatura, StringFormat='{}{0}°C'}"
+							   FontSize="34"
+							   FontStyle="Italic"
+							   HorizontalAlignment="Center"
+							   VerticalAlignment="Center"/>
+				</Border>
+
+
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Padding="10"
+						Margin="5,0">
+					<TextBlock Text="{Binding Pogoda.Opis}"
+							   FontSize="24"
+							   TextWrapping="Wrap"
+							   FontStyle="Italic"
+							   HorizontalAlignment="Center"
+							   VerticalAlignment="Center"/>
+					
+				</Border>
+
+			</UniformGrid>
+
+			<Button Content="Więcej informacji"
+					Command="{Binding PokazWiecejInformacjiCommand}"
+					Margin="0,10"
+					HorizontalAlignment="Center"
+					IsVisible="{Binding PokazPrzyciskWiecejInformacji}" />
+
+		</StackPanel>
+	</Grid>
+</Window>
